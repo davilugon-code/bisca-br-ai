@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>Bisca BR AI</title>
+    
+    <!-- Safety Script: Defines process.env and catches load errors immediately -->
+    <script>
+      // 1. Polyfill process for browser environments (Vercel/Itch.io)
+      window.process = window.process || { env: { NODE_ENV: 'production' } };
+      
+      // 2. Global Error Handler for "White Screen" debugging
+      window.onerror = function(message, source, lineno, colno, error) {
+        var root = document.getElementById('root');
+        if (root && (!root.innerHTML || root.innerHTML === '')) {
+           var errorDiv = document.createElement('div');
+           errorDiv.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#1a1a1a;color:#ff5555;padding:20px;font-family:monospace;z-index:9999;overflow:auto;';
+           errorDiv.innerHTML = '<h3>Erro Fatal de Inicialização</h3><p>' + message + '</p><p><small>' + source + ':' + lineno + '</small></p>';
+           document.body.appendChild(errorDiv);
+        }
+      };
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap');
+      body {
+        font-family: 'Inter', sans-serif;
+        touch-action: manipulation;
+        background-color: #14532d; /* Fallback green */
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "clsx": "https://aistudiocdn.com/clsx@^2.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
